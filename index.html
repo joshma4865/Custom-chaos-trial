@@ -1,0 +1,1034 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <title>Custom Chaos Trial</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="embryo.ico">
+</head>
+
+<body>
+    <h1>Custom Chaos Trial</h1>
+    <div class="region-selection">
+        <label for="underworld" class="region-label">Underworld</label>
+        <input type="radio" name="region" id="underworld" value="underworld" class="region-radio">
+        <label for="random" class="region-label">Random</label>
+        <input type="radio" checked name="region" id="random" value="random" class="region-radio">
+        <label for="surface" class="region-label">Surface</label>
+        <input type="radio" name="region" id="surface" value="surface" class="region-radio">
+    </div>
+    <nav class="tab-menu">
+        <button class="tab-button active-button" onclick="openTab(event, 'fear')">Fear</button>
+        <button class="tab-button" onclick="openTab(event, 'arcana')">Arcana</button>
+        <button class="tab-button" onclick="openTab(event, 'keepsakes')">Keepsakes</button>
+        <button class="tab-button" onclick="openTab(event, 'aspects')">Aspects</button>
+        <button class="tab-button" onclick="openTab(event, 'familiars')">Familiars</button>
+    </nav>
+    <div class="config-bar">
+        <button class="config-button" onclick="exportSettings()">Export settings file</button>
+        <button class="config-button" onclick="importSettings()">Import settings file</button>
+        <button class="config-button" onclick="loadSettings()">Go back to default settings</button>
+        <input type="file" id="file-input" accept=".json" hidden>
+    </div>
+    <div class="settings">
+
+        <div id="fear" class="section tab-pane active-pane">
+            <h2>Fear settings</h2>
+            <label for="fear-level">Trial Fear</label>
+            <input type="number" min="0" max="67" value="32" id="fear-level">
+            <span class="min-fear">Current forced fear: 0</span>
+            <div class="items fear-items">
+                <div class="item fear-item">
+                    <span class="vow">Vow of Pain</span>
+                    <label for="min-pain">Min:</label>
+                    <input type="number" min="0" max="3" value="0" data-vow="pain" class="vow-setting">
+                    <label for="max-pain">Max:</label>
+                    <input type="number" min="0" max="3" value="3" data-vow="pain" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Grit</span>
+                    <label for="min-grit">Min:</label>
+                    <input type="number" min="0" max="3" value="0" data-vow="grit" class="vow-setting">
+                    <label for="max-grit">Max:</label>
+                    <input type="number" min="0" max="3" value="3" data-vow="grit" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Wards</span>
+                    <label for="min-wards">Min:</label>
+                    <input type="number" min="0" max="2" value="0" data-vow="wards" class="vow-setting">
+                    <label for="max-wards">Max:</label>
+                    <input type="number" min="0" max="2" value="2" data-vow="wards" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Frenzy</span>
+                    <label for="min-frenzy">Min:</label>
+                    <input type="number" min="0" max="2" value="0" data-vow="frenzy" class="vow-setting">
+                    <label for="max-frenzy">Max:</label>
+                    <input type="number" min="0" max="2" value="2" data-vow="frenzy" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Hordes</span>
+                    <label for="min-hordes">Min:</label>
+                    <input type="number" min="0" max="3" value="0" data-vow="hordes" class="vow-setting">
+                    <label for="max-hordes">Max:</label>
+                    <input type="number" min="0" max="3" value="3" data-vow="hordes" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Menace</span>
+                    <label for="min-menace">Min:</label>
+                    <input type="number" min="0" max="2" value="0" data-vow="menace" class="vow-setting">
+                    <label for="max-menace">Max:</label>
+                    <input type="number" min="0" max="2" value="2" data-vow="menace" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Return</span>
+                    <label for="min-return">Min:</label>
+                    <input type="number" min="0" max="2" value="0" data-vow="return" class="vow-setting">
+                    <label for="max-return">Max:</label>
+                    <input type="number" min="0" max="2" value="2" data-vow="return" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Fangs</span>
+                    <label for="min-fangs">Min:</label>
+                    <input type="number" min="0" max="2" value="0" data-vow="fangs" class="vow-setting">
+                    <label for="max-fangs">Max:</label>
+                    <input type="number" min="0" max="2" value="2" data-vow="fangs" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Scars</span>
+                    <label for="min-scars">Min:</label>
+                    <input type="number" min="0" max="3" value="0" data-vow="scars" class="vow-setting">
+                    <label for="max-scars">Max:</label>
+                    <input type="number" min="0" max="3" value="3" data-vow="scars" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Debt</span>
+                    <label for="min-debt">Min:</label>
+                    <input type="number" min="0" max="2" value="0" data-vow="debt" class="vow-setting">
+                    <label for="max-debt">Max:</label>
+                    <input type="number" min="0" max="2" value="2" data-vow="debt" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Shadow</span>
+                    <label for="min-shadow">Min:</label>
+                    <input type="number" min="0" max="1" value="0" data-vow="shadow" class="vow-setting">
+                    <label for="max-shadow">Max:</label>
+                    <input type="number" min="0" max="1" value="1" data-vow="shadow" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Forfeit</span>
+                    <label for="min-forfeit">Min:</label>
+                    <input type="number" min="0" max="1" value="0" data-vow="forfeit" class="vow-setting">
+                    <label for="max-forfeit">Max:</label>
+                    <input type="number" min="0" max="1" value="1" data-vow="forfeit" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Time</span>
+                    <label for="min-time">Min:</label>
+                    <input type="number" min="0" max="3" value="0" data-vow="time" class="vow-setting">
+                    <label for="max-time">Max:</label>
+                    <input type="number" min="0" max="3" value="3" data-vow="time" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Void</span>
+                    <label for="min-void">Min:</label>
+                    <input type="number" min="0" max="4" value="0" data-vow="void" class="vow-setting">
+                    <label for="max-void">Max:</label>
+                    <input type="number" min="0" max="4" value="4" data-vow="void" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Hubris</span>
+                    <label for="min-hubris">Min:</label>
+                    <input type="number" min="0" max="2" value="0" data-vow="hubris" class="vow-setting">
+                    <label for="max-hubris">Max:</label>
+                    <input type="number" min="0" max="2" value="2" data-vow="hubris" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Denial</span>
+                    <label for="min-denial">Min:</label>
+                    <input type="number" min="0" max="1" value="0" data-vow="denial" class="vow-setting">
+                    <label for="max-denial">Max:</label>
+                    <input type="number" min="0" max="1" value="1" data-vow="denial" class="vow-setting">
+                </div>
+                <div class="item fear-item">
+                    <span class="vow">Vow of Rivals</span>
+                    <label for="min-rivals">Min:</label>
+                    <input type="number" min="0" max="4" value="0" data-vow="rivals" class="vow-setting">
+                    <label for="max-rivals">Max:</label>
+                    <input type="number" min="0" max="4" value="4" data-vow="rivals" class="vow-setting">
+                </div>
+            </div>
+        </div>
+
+        <div class="section tab-pane" id="arcana">
+            <h2>Arcana settings</h2>
+            <div class="setting-general-div">
+                <label for="force-ds" class="setting-general-label">
+                    <span>Force either Strength or Death</span>
+                    <input type="checkbox" class="setting-general" id="force-ds">
+                </label>
+                <label for="disable-ds" class="setting-general-label">
+                    <span>Disable Strength and Death at the same time</span>
+                    <input type="checkbox" class="setting-general" id="disable-ds">
+                </label>
+            </div>
+            <div class="bulk-actions">
+                <button type="button" class="bulk-action" onclick="performBulkAction('force', 'arcana')">Force
+                    all</button>
+                <button type="button" class="bulk-action" onclick="performBulkAction('rand', 'arcana')">Randomize
+                    all</button>
+                <button type="button" class="bulk-action" onclick="performBulkAction('disable', 'arcana')">Disable
+                    all</button>
+            </div>
+            <span class="min-grasp">Current forced grasp: 0</span>
+            <div class="items arcana-items">
+                <div class="item arcana-item">
+                    <span class="card-label">The Sorceress</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c1" id="c1-force" value="force" data-card="0">
+                        <label for="c1-force">Force selection</label>
+                        <input type="radio" checked name="c1" id="c1-rand" value="rand" data-card="0">
+                        <label for="c1-rand">Randomize selection</label>
+                        <input type="radio" name="c1" id="c1-disable" value="disable" data-card="0">
+                        <label for="c1-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">The Wayward Son</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c2" id="c2-force" value="force" data-card="1">
+                        <label for="c2-force">Force selection</label>
+                        <input type="radio" checked name="c2" id="c2-rand" value="rand" data-card="1">
+                        <label for="c2-rand">Randomize selection</label>
+                        <input type="radio" name="c2" id="c2-disable" value="disable" data-card="1">
+                        <label for="c2-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">The Huntress</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c3" id="c3-force" value="force" data-card="2">
+                        <label for="c3-force">Force selection</label>
+                        <input type="radio" checked name="c3" id="c3-rand" value="rand" data-card="2">
+                        <label for="c3-rand">Randomize selection</label>
+                        <input type="radio" name="c3" id="c3-disable" value="disable" data-card="2">
+                        <label for="c3-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">Eternity</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c4" id="c4-force" value="force" data-card="3">
+                        <label for="c4-force">Force selection</label>
+                        <input type="radio" checked name="c4" id="c4-rand" value="rand" data-card="3">
+                        <label for="c4-rand">Randomize selection</label>
+                        <input type="radio" name="c4" id="c4-disable" value="disable" data-card="3">
+                        <label for="c4-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">The Furies</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c6" id="c6-force" value="force" data-card="5">
+                        <label for="c6-force">Force selection</label>
+                        <input type="radio" checked name="c6" id="c6-rand" value="rand" data-card="5">
+                        <label for="c6-rand">Randomize selection</label>
+                        <input type="radio" name="c6" id="c6-disable" value="disable" data-card="5">
+                        <label for="c6-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">Persistence</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c7" id="c7-force" value="force" data-card="6">
+                        <label for="c7-force">Force selection</label>
+                        <input type="radio" checked name="c7" id="c7-rand" value="rand" data-card="6">
+                        <label for="c7-rand">Randomize selection</label>
+                        <input type="radio" name="c7" id="c7-disable" value="disable" data-card="6">
+                        <label for="c7-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">The Messenger</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c8" id="c8-force" value="force" data-card="7">
+                        <label for="c8-force">Force selection</label>
+                        <input type="radio" checked name="c8" id="c8-rand" value="rand" data-card="7">
+                        <label for="c8-rand">Randomize selection</label>
+                        <input type="radio" name="c8" id="c8-disable" value="disable" data-card="7">
+                        <label for="c8-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">The Unseen</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c9" id="c9-force" value="force" data-card="8">
+                        <label for="c9-force">Force selection</label>
+                        <input type="radio" checked name="c9" id="c9-rand" value="rand" data-card="8">
+                        <label for="c9-rand">Randomize selection</label>
+                        <input type="radio" name="c9" id="c9-disable" value="disable" data-card="8">
+                        <label for="c9-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">Night</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c10" id="c10-force" value="force" data-card="9">
+                        <label for="c10-force">Force selection</label>
+                        <input type="radio" checked name="c10" id="c10-rand" value="rand" data-card="9">
+                        <label for="c10-rand">Randomize selection</label>
+                        <input type="radio" name="c10" id="c10-disable" value="disable" data-card="9">
+                        <label for="c10-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">The Swift Runner</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c11" id="c11-force" value="force" data-card="10">
+                        <label for="c11-force">Force selection</label>
+                        <input type="radio" checked name="c11" id="c11-rand" value="rand" data-card="10">
+                        <label for="c11-rand">Randomize selection</label>
+                        <input type="radio" name="c11" id="c11-disable" value="disable" data-card="10">
+                        <label for="c11-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">Death</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c12" id="c12-force" value="force" data-card="11">
+                        <label for="c12-force">Force selection</label>
+                        <input type="radio" checked name="c12" id="c12-rand" value="rand" data-card="11">
+                        <label for="c12-rand">Randomize selection</label>
+                        <input type="radio" name="c12" id="c12-disable" value="disable" data-card="11">
+                        <label for="c12-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">Origination</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c14" id="c14-force" value="force" data-card="13">
+                        <label for="c14-force">Force selection</label>
+                        <input type="radio" checked name="c14" id="c14-rand" value="rand" data-card="13">
+                        <label for="c14-rand">Randomize selection</label>
+                        <input type="radio" name="c14" id="c14-disable" value="disable" data-card="13">
+                        <label for="c14-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">The Lovers</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c15" id="c15-force" value="force" data-card="14">
+                        <label for="c15-force">Force selection</label>
+                        <input type="radio" checked name="c15" id="c15-rand" value="rand" data-card="14">
+                        <label for="c15-rand">Randomize selection</label>
+                        <input type="radio" name="c15" id="c15-disable" value="disable" data-card="14">
+                        <label for="c15-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">The Enchantress</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c16" id="c16-force" value="force" data-card="15">
+                        <label for="c16-force">Force selection</label>
+                        <input type="radio" checked name="c16" id="c16-rand" value="rand" data-card="15">
+                        <label for="c16-rand">Randomize selection</label>
+                        <input type="radio" name="c16" id="c16-disable" value="disable" data-card="15">
+                        <label for="c16-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">The Boatman</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c17" id="c17-force" value="force" data-card="16">
+                        <label for="c17-force">Force selection</label>
+                        <input type="radio" checked name="c17" id="c17-rand" value="rand" data-card="16">
+                        <label for="c17-rand">Randomize selection</label>
+                        <input type="radio" name="c17" id="c17-disable" value="disable" data-card="16">
+                        <label for="c17-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">The Artificer</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c18" id="c18-force" value="force" data-card="17">
+                        <label for="c18-force">Force selection</label>
+                        <input type="radio" checked name="c18" id="c18-rand" value="rand" data-card="17">
+                        <label for="c18-rand">Randomize selection</label>
+                        <input type="radio" name="c18" id="c18-disable" value="disable" data-card="17">
+                        <label for="c18-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">Excellence</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c19" id="c19-force" value="force" data-card="18">
+                        <label for="c19-force">Force selection</label>
+                        <input type="radio" checked name="c19" id="c19-rand" value="rand" data-card="18">
+                        <label for="c19-rand">Randomize selection</label>
+                        <input type="radio" name="c19" id="c19-disable" value="disable" data-card="18">
+                        <label for="c19-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">The Champions</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c22" id="c22-force" value="force" data-card="21">
+                        <label for="c22-force">Force selection</label>
+                        <input type="radio" checked name="c22" id="c22-rand" value="rand" data-card="21">
+                        <label for="c22-rand">Randomize selection</label>
+                        <input type="radio" name="c22" id="c22-disable" value="disable" data-card="21">
+                        <label for="c22-disable">Disable selection</label>
+                    </div>
+                </div>
+                <div class="item arcana-item">
+                    <span class="card-label">Strength</span>
+                    <div class="tri-state-toggle">
+                        <input type="radio" name="c23" id="c23-force" value="force" data-card="22">
+                        <label for="c23-force">Force selection</label>
+                        <input type="radio" checked name="c23" id="c23-rand" value="rand" data-card="22">
+                        <label for="c23-rand">Randomize selection</label>
+                        <input type="radio" name="c23" id="c23-disable" value="disable" data-card="22">
+                        <label for="c23-disable">Disable selection</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section tab-pane" id="keepsakes">
+            <h2>keepsake settings</h2>
+            <div class="setting-general-div">
+                <label for="disable-dd" class="setting-general-label">
+                    <span>Disable Death Defiance keepsakes if Strength is selected</span>
+                    <input type="checkbox" class="setting-general" id="disable-dd">
+                </label>
+            </div>
+            <div class="items keepsake-items">
+                <table class="keepsake-table">
+                    <thead>
+                        <tr>
+                            <th>keepsake</th>
+                            <th>biome 1</th>
+                            <th>biome 2</th>
+                            <th>biome 3</th>
+                            <th>biome 4</th>
+                        </tr>
+                        <tr>
+                            <th>enable all</th>
+                            <th><button type="button" class="bulk-action" onclick="toggleKeepsake('enable', '1')">enable
+                                    all</button></th>
+                            <th><button type="button" class="bulk-action" onclick="toggleKeepsake('enable', '2')">enable
+                                    all</button></th>
+                            <th><button type="button" class="bulk-action" onclick="toggleKeepsake('enable', '3')">enable
+                                    all</button></th>
+                            <th><button type="button" class="bulk-action" onclick="toggleKeepsake('enable', '4')">enable
+                                    all</button></th>
+                        </tr>
+                        <tr>
+                            <th>disable all</th>
+                            <th><button type="button" class="bulk-action"
+                                    onclick="toggleKeepsake('disable', '1')">disable
+                                    all</button></th>
+                            <th><button type="button" class="bulk-action"
+                                    onclick="toggleKeepsake('disable', '2')">disable
+                                    all</button></th>
+                            <th><button type="button" class="bulk-action"
+                                    onclick="toggleKeepsake('disable', '3')">disable
+                                    all</button></th>
+                            <th><button type="button" class="bulk-action"
+                                    onclick="toggleKeepsake('disable', '4')">disable
+                                    all</button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Silver Wheel</span></td>
+                            <td><label for="ks1" class="td-label"><input type="checkbox" id="ks1" checked
+                                        class="ks-setting" data-biome="1" data-ks="Silver Wheel"></label></td>
+                            <td><label for="ks2" class="td-label"><input type="checkbox" id="ks2" checked
+                                        class="ks-setting" data-biome="2" data-ks="Silver Wheel"></label></td>
+                            <td><label for="ks3" class="td-label"><input type="checkbox" id="ks3" checked
+                                        class="ks-setting" data-biome="3" data-ks="Silver Wheel"></label></td>
+                            <td><label for="ks4" class="td-label"><input type="checkbox" id="ks4" checked
+                                        class="ks-setting" data-biome="4" data-ks="Silver Wheel"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Knuckle Bones</span></td>
+                            <td><label for="ks5" class="td-label"><input type="checkbox" id="ks5" checked
+                                        class="ks-setting" data-biome="1" data-ks="Knuckle Bones"></label></td>
+                            <td><label for="ks6" class="td-label"><input type="checkbox" id="ks6" checked
+                                        class="ks-setting" data-biome="2" data-ks="Knuckle Bones"></label></td>
+                            <td><label for="ks7" class="td-label"><input type="checkbox" id="ks7" checked
+                                        class="ks-setting" data-biome="3" data-ks="Knuckle Bones"></label></td>
+                            <td><label for="ks8" class="td-label"><input type="checkbox" id="ks8" checked
+                                        class="ks-setting" data-biome="4" data-ks="Knuckle Bones"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Luckier Tooth</span></td>
+                            <td><label for="ks9" class="td-label"><input type="checkbox" id="ks9" checked
+                                        class="ks-setting" data-biome="1" data-ks="Luckier Tooth"></label></td>
+                            <td><label for="ks10" class="td-label"><input type="checkbox" id="ks10" checked
+                                        class="ks-setting" data-biome="2" data-ks="Luckier Tooth"></label></td>
+                            <td><label for="ks11" class="td-label"><input type="checkbox" id="ks11" checked
+                                        class="ks-setting" data-biome="3" data-ks="Luckier Tooth"></label></td>
+                            <td><label for="ks12" class="td-label"><input type="checkbox" id="ks12" checked
+                                        class="ks-setting" data-biome="4" data-ks="Luckier Tooth"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Ghost Onion</span></td>
+                            <td><label for="ks13" class="td-label"><input type="checkbox" id="ks13" checked
+                                        class="ks-setting" data-biome="1" data-ks="Ghost Onion"></label></td>
+                            <td><label for="ks14" class="td-label"><input type="checkbox" id="ks14" checked
+                                        class="ks-setting" data-biome="2" data-ks="Ghost Onion"></label></td>
+                            <td><label for="ks15" class="td-label"><input type="checkbox" id="ks15" checked
+                                        class="ks-setting" data-biome="3" data-ks="Ghost Onion"></label></td>
+                            <td><label for="ks16" class="td-label"><input type="checkbox" id="ks16" checked
+                                        class="ks-setting" data-biome="4" data-ks="Ghost Onion"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Evil Eye</span></td>
+                            <td><label for="ks17" class="td-label"><input type="checkbox" id="ks17" checked
+                                        class="ks-setting" data-biome="1" data-ks="Evil Eye"></label></td>
+                            <td><label for="ks18" class="td-label"><input type="checkbox" id="ks18" checked
+                                        class="ks-setting" data-biome="2" data-ks="Evil Eye"></label></td>
+                            <td><label for="ks19" class="td-label"><input type="checkbox" id="ks19" checked
+                                        class="ks-setting" data-biome="3" data-ks="Evil Eye"></label></td>
+                            <td><label for="ks20" class="td-label"><input type="checkbox" id="ks20" checked
+                                        class="ks-setting" data-biome="4" data-ks="Evil Eye"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Gold Purse</span></td>
+                            <td><label for="ks21" class="td-label"><input type="checkbox" id="ks21" checked
+                                        class="ks-setting" data-biome="1" data-ks="Gold Purse"></label></td>
+                            <td><label for="ks22" class="td-label"><input type="checkbox" id="ks22" checked
+                                        class="ks-setting" data-biome="2" data-ks="Gold Purse"></label></td>
+                            <td><label for="ks23" class="td-label"><input type="checkbox" id="ks23" checked
+                                        class="ks-setting" data-biome="3" data-ks="Gold Purse"></label></td>
+                            <td><label for="ks24" class="td-label"><input type="checkbox" id="ks24" checked
+                                        class="ks-setting" data-biome="4" data-ks="Gold Purse"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Engraved Pin</span></td>
+                            <td><label for="ks25" class="td-label"><input type="checkbox" id="ks25" checked
+                                        class="ks-setting" data-biome="1" data-ks="Engraved Pin"></label></td>
+                            <td><label for="ks26" class="td-label"><input type="checkbox" id="ks26" checked
+                                        class="ks-setting" data-biome="2" data-ks="Engraved Pin"></label></td>
+                            <td><label for="ks27" class="td-label"><input type="checkbox" id="ks27" checked
+                                        class="ks-setting" data-biome="3" data-ks="Engraved Pin"></label></td>
+                            <td><label for="ks28" class="td-label"><input type="checkbox" id="ks28" checked
+                                        class="ks-setting" data-biome="4" data-ks="Engraved Pin"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Discordant Bell</span></td>
+                            <td><label for="ks29" class="td-label"><input type="checkbox" id="ks29" checked
+                                        class="ks-setting" data-biome="1" data-ks="Discordant Bell"></label></td>
+                            <td><label for="ks30" class="td-label"><input type="checkbox" id="ks30" checked
+                                        class="ks-setting" data-biome="2" data-ks="Discordant Bell"></label></td>
+                            <td><label for="ks31" class="td-label"><input type="checkbox" id="ks31" checked
+                                        class="ks-setting" data-biome="3" data-ks="Discordant Bell"></label></td>
+                            <td><label for="ks32" class="td-label"><input type="checkbox" id="ks32" checked
+                                        class="ks-setting" data-biome="4" data-ks="Discordant Bell"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Metallic Droplet</span></td>
+                            <td><label for="ks33" class="td-label"><input type="checkbox" id="ks33" checked
+                                        class="ks-setting" data-biome="1" data-ks="Metallic Droplet"></label></td>
+                            <td><label for="ks34" class="td-label"><input type="checkbox" id="ks34" checked
+                                        class="ks-setting" data-biome="2" data-ks="Metallic Droplet"></label></td>
+                            <td><label for="ks35" class="td-label"><input type="checkbox" id="ks35" checked
+                                        class="ks-setting" data-biome="3" data-ks="Metallic Droplet"></label></td>
+                            <td><label for="ks36" class="td-label"><input type="checkbox" id="ks36" checked
+                                        class="ks-setting" data-biome="4" data-ks="Metallic Droplet"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">White Antler</span></td>
+                            <td><label for="ks37" class="td-label"><input type="checkbox" id="ks37" checked
+                                        class="ks-setting" data-biome="1" data-ks="White Antler"></label></td>
+                            <td><label for="ks38" class="td-label"><input type="checkbox" id="ks38" checked
+                                        class="ks-setting" data-biome="2" data-ks="White Antler"></label></td>
+                            <td><label for="ks39" class="td-label"><input type="checkbox" id="ks39" checked
+                                        class="ks-setting" data-biome="3" data-ks="White Antler"></label></td>
+                            <td><label for="ks40" class="td-label"><input type="checkbox" id="ks40" checked
+                                        class="ks-setting" data-biome="4" data-ks="White Antler"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Moon Beam</span></td>
+                            <td><label for="ks41" class="td-label"><input type="checkbox" id="ks41" checked
+                                        class="ks-setting" data-biome="1" data-ks="Moon Beam"></label></td>
+                            <td><label for="ks42" class="td-label"><input type="checkbox" id="ks42" checked
+                                        class="ks-setting" data-biome="2" data-ks="Moon Beam"></label></td>
+                            <td><label for="ks43" class="td-label"><input type="checkbox" id="ks43" checked
+                                        class="ks-setting" data-biome="3" data-ks="Moon Beam"></label></td>
+                            <td><label for="ks44" class="td-label"><input type="checkbox" id="ks44" checked
+                                        class="ks-setting" data-biome="4" data-ks="Moon Beam"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Cloud Bangle</span></td>
+                            <td><label for="ks45" class="td-label"><input type="checkbox" id="ks45" checked
+                                        class="ks-setting" data-biome="1" data-ks="Cloud Bangle"></label></td>
+                            <td><label for="ks46" class="td-label"><input type="checkbox" id="ks46" checked
+                                        class="ks-setting" data-biome="2" data-ks="Cloud Bangle"></label></td>
+                            <td><label for="ks47" class="td-label"><input type="checkbox" id="ks47" checked
+                                        class="ks-setting" data-biome="3" data-ks="Cloud Bangle"></label></td>
+                            <td><label for="ks48" class="td-label"><input type="checkbox" id="ks48" checked
+                                        class="ks-setting" data-biome="4" data-ks="Cloud Bangle"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Iridescent Fan</span></td>
+                            <td><label for="ks49" class="td-label"><input type="checkbox" id="ks49" checked
+                                        class="ks-setting" data-biome="1" data-ks="Iridescent Fan"></label></td>
+                            <td><label for="ks50" class="td-label"><input type="checkbox" id="ks50" checked
+                                        class="ks-setting" data-biome="2" data-ks="Iridescent Fan"></label></td>
+                            <td><label for="ks51" class="td-label"><input type="checkbox" id="ks51" checked
+                                        class="ks-setting" data-biome="3" data-ks="Iridescent Fan"></label></td>
+                            <td><label for="ks52" class="td-label"><input type="checkbox" id="ks52" checked
+                                        class="ks-setting" data-biome="4" data-ks="Iridescent Fan"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Vivid Sea</span></td>
+                            <td><label for="ks53" class="td-label"><input type="checkbox" id="ks53" checked
+                                        class="ks-setting" data-biome="1" data-ks="Vivid Sea"></label></td>
+                            <td><label for="ks54" class="td-label"><input type="checkbox" id="ks54" checked
+                                        class="ks-setting" data-biome="2" data-ks="Vivid Sea"></label></td>
+                            <td><label for="ks55" class="td-label"><input type="checkbox" id="ks55" checked
+                                        class="ks-setting" data-biome="3" data-ks="Vivid Sea"></label></td>
+                            <td><label for="ks56" class="td-label"><input type="checkbox" id="ks56" checked
+                                        class="ks-setting" data-biome="4" data-ks="Vivid Sea"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Barley Sheaf</span></td>
+                            <td><label for="ks57" class="td-label"><input type="checkbox" id="ks57" checked
+                                        class="ks-setting" data-biome="1" data-ks="Barley Sheaf"></label></td>
+                            <td><label for="ks58" class="td-label"><input type="checkbox" id="ks58" checked
+                                        class="ks-setting" data-biome="2" data-ks="Barley Sheaf"></label></td>
+                            <td><label for="ks59" class="td-label"><input type="checkbox" id="ks59" checked
+                                        class="ks-setting" data-biome="3" data-ks="Barley Sheaf"></label></td>
+                            <td><label for="ks60" class="td-label"><input type="checkbox" id="ks60" checked
+                                        class="ks-setting" data-biome="4" data-ks="Barley Sheaf"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Harmonic Photon</span></td>
+                            <td><label for="ks61" class="td-label"><input type="checkbox" id="ks61" checked
+                                        class="ks-setting" data-biome="1" data-ks="Harmonic Photon"></label></td>
+                            <td><label for="ks62" class="td-label"><input type="checkbox" id="ks62" checked
+                                        class="ks-setting" data-biome="2" data-ks="Harmonic Photon"></label></td>
+                            <td><label for="ks63" class="td-label"><input type="checkbox" id="ks63" checked
+                                        class="ks-setting" data-biome="3" data-ks="Harmonic Photon"></label></td>
+                            <td><label for="ks64" class="td-label"><input type="checkbox" id="ks64" checked
+                                        class="ks-setting" data-biome="4" data-ks="Harmonic Photon"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Beatiful Mirror</span></td>
+                            <td><label for="ks65" class="td-label"><input type="checkbox" id="ks65" checked
+                                        class="ks-setting" data-biome="1" data-ks="Beautiful Mirror"></label></td>
+                            <td><label for="ks66" class="td-label"><input type="checkbox" id="ks66" checked
+                                        class="ks-setting" data-biome="2" data-ks="Beautiful Mirror"></label></td>
+                            <td><label for="ks67" class="td-label"><input type="checkbox" id="ks67" checked
+                                        class="ks-setting" data-biome="3" data-ks="Beautiful Mirror"></label></td>
+                            <td><label for="ks68" class="td-label"><input type="checkbox" id="ks68" checked
+                                        class="ks-setting" data-biome="4" data-ks="Beautiful Mirror"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Adamant Shard</span></td>
+                            <td><label for="ks69" class="td-label"><input type="checkbox" id="ks69" checked
+                                        class="ks-setting" data-biome="1" data-ks="Adamant Shard"></label></td>
+                            <td><label for="ks70" class="td-label"><input type="checkbox" id="ks70" checked
+                                        class="ks-setting" data-biome="2" data-ks="Adamant Shard"></label></td>
+                            <td><label for="ks71" class="td-label"><input type="checkbox" id="ks71" checked
+                                        class="ks-setting" data-biome="3" data-ks="Adamant Shard"></label></td>
+                            <td><label for="ks72" class="td-label"><input type="checkbox" id="ks72" checked
+                                        class="ks-setting" data-biome="4" data-ks="Adamant Shard"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Everlasting Ember</span></td>
+                            <td><label for="ks73" class="td-label"><input type="checkbox" id="ks73" checked
+                                        class="ks-setting" data-biome="1" data-ks="Everlasting Ember"></label></td>
+                            <td><label for="ks74" class="td-label"><input type="checkbox" id="ks74" checked
+                                        class="ks-setting" data-biome="2" data-ks="Everlasting Ember"></label></td>
+                            <td><label for="ks75" class="td-label"><input type="checkbox" id="ks75" checked
+                                        class="ks-setting" data-biome="3" data-ks="Everlasting Ember"></label></td>
+                            <td><label for="ks76" class="td-label"><input type="checkbox" id="ks76" checked
+                                        class="ks-setting" data-biome="4" data-ks="Everlasting Ember"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Sword Hilt</span></td>
+                            <td><label for="ks77" class="td-label"><input type="checkbox" id="ks77" checked
+                                        class="ks-setting" data-biome="1" data-ks="Sword Hilt"></label></td>
+                            <td><label for="ks78" class="td-label"><input type="checkbox" id="ks78" checked
+                                        class="ks-setting" data-biome="2" data-ks="Sword Hilt"></label></td>
+                            <td><label for="ks79" class="td-label"><input type="checkbox" id="ks79" checked
+                                        class="ks-setting" data-biome="3" data-ks="Sword Hilt"></label></td>
+                            <td><label for="ks80" class="td-label"><input type="checkbox" id="ks80" checked
+                                        class="ks-setting" data-biome="4" data-ks="Sword Hilt"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Gorgon Amulet</span></td>
+                            <td><label for="ks81" class="td-label"><input type="checkbox" id="ks81" checked
+                                        class="ks-setting" data-biome="1" data-ks="Gorgon Amulet"></label></td>
+                            <td><label for="ks82" class="td-label"><input type="checkbox" id="ks82" checked
+                                        class="ks-setting" data-biome="2" data-ks="Gorgon Amulet"></label></td>
+                            <td><label for="ks83" class="td-label"><input type="checkbox" id="ks83" checked
+                                        class="ks-setting" data-biome="3" data-ks="Gorgon Amulet"></label></td>
+                            <td><label for="ks84" class="td-label"><input type="checkbox" id="ks84" checked
+                                        class="ks-setting" data-biome="4" data-ks="Gorgon Amulet"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Fig Leaf</span></td>
+                            <td><label for="ks85" class="td-label"><input type="checkbox" id="ks85" checked
+                                        class="ks-setting" data-biome="1" data-ks="Fig Leaf"></label></td>
+                            <td><label for="ks86" class="td-label"><input type="checkbox" id="ks86" checked
+                                        class="ks-setting" data-biome="2" data-ks="Fig Leaf"></label></td>
+                            <td><label for="ks87" class="td-label"><input type="checkbox" id="ks87" checked
+                                        class="ks-setting" data-biome="3" data-ks="Fig Leaf"></label></td>
+                            <td><label for="ks88" class="td-label"><input type="checkbox" id="ks88" checked
+                                        class="ks-setting" data-biome="4" data-ks="Fig Leaf"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Silken Sash</span></td>
+                            <td><label for="ks89" class="td-label"><input type="checkbox" id="ks89" checked
+                                        class="ks-setting" data-biome="1" data-ks="Silken Sash"></label></td>
+                            <td><label for="ks90" class="td-label"><input type="checkbox" id="ks90" checked
+                                        class="ks-setting" data-biome="2" data-ks="Silken Sash"></label></td>
+                            <td><label for="ks91" class="td-label"><input type="checkbox" id="ks91" checked
+                                        class="ks-setting" data-biome="3" data-ks="Silken Sash"></label></td>
+                            <td><label for="ks92" class="td-label"><input type="checkbox" id="ks92" checked
+                                        class="ks-setting" data-biome="4" data-ks="Silken Sash"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Aromatic Phial</span></td>
+                            <td><label for="ks93" class="td-label"><input type="checkbox" id="ks93" checked
+                                        class="ks-setting" data-biome="1" data-ks="Aromatic Phial"></label></td>
+                            <td><label for="ks94" class="td-label"><input type="checkbox" id="ks94" checked
+                                        class="ks-setting" data-biome="2" data-ks="Aromatic Phial"></label></td>
+                            <td><label for="ks95" class="td-label"><input type="checkbox" id="ks95" checked
+                                        class="ks-setting" data-biome="3" data-ks="Aromatic Phial"></label></td>
+                            <td><label for="ks96" class="td-label"><input type="checkbox" id="ks96" checked
+                                        class="ks-setting" data-biome="4" data-ks="Aromatic Phial"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Concave Stone</span></td>
+                            <td><label for="ks97" class="td-label"><input type="checkbox" id="ks97" checked
+                                        class="ks-setting" data-biome="1" data-ks="Concave Stone"></label></td>
+                            <td><label for="ks98" class="td-label"><input type="checkbox" id="ks98" checked
+                                        class="ks-setting" data-biome="2" data-ks="Concave Stone"></label></td>
+                            <td><label for="ks99" class="td-label"><input type="checkbox" id="ks99" checked
+                                        class="ks-setting" data-biome="3" data-ks="Concave Stone"></label></td>
+                            <td><label for="ks100" class="td-label"><input type="checkbox" id="ks100" checked
+                                        class="ks-setting" data-biome="4" data-ks="Concave Stone"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Lion Fang</span></td>
+                            <td><label for="ks101" class="td-label"><input type="checkbox" id="ks101" checked
+                                        class="ks-setting" data-biome="1" data-ks="Lion Fang"></label></td>
+                            <td><label for="ks102" class="td-label"><input type="checkbox" id="ks102" checked
+                                        class="ks-setting" data-biome="2" data-ks="Lion Fang"></label></td>
+                            <td><label for="ks103" class="td-label"><input type="checkbox" id="ks103" checked
+                                        class="ks-setting" data-biome="3" data-ks="Lion Fang"></label></td>
+                            <td><label for="ks104" class="td-label"><input type="checkbox" id="ks104" checked
+                                        class="ks-setting" data-biome="4" data-ks="Lion Fang"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Blackened Fleece</span></td>
+                            <td><label for="ks105" class="td-label"><input type="checkbox" id="ks105" checked
+                                        class="ks-setting" data-biome="1" data-ks="Blackened Fleece"></label></td>
+                            <td><label for="ks106" class="td-label"><input type="checkbox" id="ks106" checked
+                                        class="ks-setting" data-biome="2" data-ks="Blackened Fleece"></label></td>
+                            <td><label for="ks107" class="td-label"><input type="checkbox" id="ks107" checked
+                                        class="ks-setting" data-biome="3" data-ks="Blackened Fleece"></label></td>
+                            <td><label for="ks108" class="td-label"><input type="checkbox" id="ks108" checked
+                                        class="ks-setting" data-biome="4" data-ks="Blackened Fleece"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Crystal Figurine</span></td>
+                            <td><label for="ks109" class="td-label"><input type="checkbox" id="ks109" checked
+                                        class="ks-setting" data-biome="1" data-ks="Crystal Figurine"></label></td>
+                            <td><label for="ks110" class="td-label"><input type="checkbox" id="ks110" checked
+                                        class="ks-setting" data-biome="2" data-ks="Crystal Figurine"></label></td>
+                            <td><label for="ks111" class="td-label"><input type="checkbox" id="ks111" checked
+                                        class="ks-setting" data-biome="3" data-ks="Crystal Figurine"></label></td>
+                            <td><label for="ks112" class="td-label"><input type="checkbox" id="ks112" checked
+                                        class="ks-setting" data-biome="4" data-ks="Crystal Figurine"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Experimental Hammer</span></td>
+                            <td><label for="ks113" class="td-label"><input type="checkbox" id="ks113" checked
+                                        class="ks-setting" data-biome="1" data-ks="Experimental Hammer"></label></td>
+                            <td><label for="ks114" class="td-label"><input type="checkbox" id="ks114" checked
+                                        class="ks-setting" data-biome="2" data-ks="Experimental Hammer"></label></td>
+                            <td><label for="ks115" class="td-label"><input type="checkbox" id="ks115" checked
+                                        class="ks-setting" data-biome="3" data-ks="Experimental Hammer"></label></td>
+                            <td><label for="ks116" class="td-label"><input type="checkbox" id="ks116" checked
+                                        class="ks-setting" data-biome="4" data-ks="Experimental Hammer"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Jeweled Pom</span></td>
+                            <td><label for="ks117" class="td-label"><input type="checkbox" id="ks117" checked
+                                        class="ks-setting" data-biome="1" data-ks="Jeweled Pom"></label></td>
+                            <td><label for="ks118" class="td-label"><input type="checkbox" id="ks118" checked
+                                        class="ks-setting" data-biome="2" data-ks="Jeweled Pom"></label></td>
+                            <td><label for="ks119" class="td-label"><input type="checkbox" id="ks119" checked
+                                        class="ks-setting" data-biome="3" data-ks="Jeweled Pom"></label></td>
+                            <td><label for="ks120" class="td-label"><input type="checkbox" id="ks120" checked
+                                        class="ks-setting" data-biome="4" data-ks="Jeweled Pom"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Calling Card</span></td>
+                            <td><label for="ks121" class="td-label"><input type="checkbox" id="ks121" checked
+                                        class="ks-setting" data-biome="1" data-ks="Calling Card"></label></td>
+                            <td><label for="ks122" class="td-label"><input type="checkbox" id="ks122" checked
+                                        class="ks-setting" data-biome="2" data-ks="Calling Card"></label></td>
+                            <td><label for="ks123" class="td-label"><input type="checkbox" id="ks123" checked
+                                        class="ks-setting" data-biome="3" data-ks="Calling Card"></label></td>
+                            <td><label for="ks124" class="td-label"><input type="checkbox" id="ks124" checked
+                                        class="ks-setting" data-biome="4" data-ks="Calling Card"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Time Piece</span></td>
+                            <td><label for="ks125" class="td-label"><input type="checkbox" id="ks125" checked
+                                        class="ks-setting" data-biome="1" data-ks="Time Piece"></label></td>
+                            <td><label for="ks126" class="td-label"><input type="checkbox" id="ks126" checked
+                                        class="ks-setting" data-biome="2" data-ks="Time Piece"></label></td>
+                            <td><label for="ks127" class="td-label"><input type="checkbox" id="ks127" checked
+                                        class="ks-setting" data-biome="3" data-ks="Time Piece"></label></td>
+                            <td><label for="ks128" class="td-label"><input type="checkbox" id="ks128" checked
+                                        class="ks-setting" data-biome="4" data-ks="Time Piece"></label></td>
+                        </tr>
+                        <tr class="ks-item-container">
+                            <td class="ks-name"><span class="ks-item">Trascendent embryo</span></td>
+                            <td><label for="ks129" class="td-label"><input type="checkbox" id="ks129" checked
+                                        class="ks-setting" data-biome="1" data-ks="Trascendent Embryo"></label></td>
+                            <td><label for="ks130" class="td-label"><input type="checkbox" id="ks130" checked
+                                        class="ks-setting" data-biome="2" data-ks="Trascendent Embryo"></label></td>
+                            <td><label for="ks131" class="td-label"><input type="checkbox" id="ks131" checked
+                                        class="ks-setting" data-biome="3" data-ks="Trascendent Embryo"></label></td>
+                            <td><label for="ks132" class="td-label"><input type="checkbox" id="ks132" checked
+                                        class="ks-setting" data-biome="4" data-ks="Trascendent Embryo"></label></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section tab-pane" id="aspects">
+            <h2>Aspect settings</h2>
+            <div class="bulk-actions">
+                <button type="button" class="bulk-action" onclick="performBulkAction('enable', 'aspect')">Enable
+                    all</button>
+                <button type="button" class="bulk-action" onclick="performBulkAction('disable', 'aspect')">Disable
+                    all</button>
+            </div>
+            <div class="items aspect-items">
+                <label for="mel-staff">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Melinoe's Staff</span>
+                        <input type="checkbox" checked id="mel-staff" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="circe">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Circe</span>
+                        <input type="checkbox" checked id="circe" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="momus">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Momus</span>
+                        <input type="checkbox" checked id="momus" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="anubis">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Anubis</span>
+                        <input type="checkbox" checked id="anubis" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="mel-daggers">
+                    <div class="item aspect-item" checked>
+                        <span class="aspect-span">Melinoe's Daggers</span>
+                        <input type="checkbox" checked id="mel-daggers" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="artemis">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Artemis</span>
+                        <input type="checkbox" checked id="artemis" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="pam">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Pam</span>
+                        <input type="checkbox" checked id="pam" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="morrigan">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of The Morrigan</span>
+                        <input type="checkbox" checked id="morrigan" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="mel-torches">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Melinoe's Torches</span>
+                        <input type="checkbox" checked id="mel-torches" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="moros">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Moros</span>
+                        <input type="checkbox" checked id="moros" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="eos">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Eos</span>
+                        <input type="checkbox" checked id="eos" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="supay">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Supay</span>
+                        <input type="checkbox" checked id="supay" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="mel-axe">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Melinoe's axe</span>
+                        <input type="checkbox" checked id="mel-axe" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="charon">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Charon</span>
+                        <input type="checkbox" checked id="charon" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="thanatos">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Thanatos</span>
+                        <input type="checkbox" checked id="thanatos" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="nergal">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Nergal</span>
+                        <input type="checkbox" checked id="nergal" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="mel-skull">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Melinoe's Skull</span>
+                        <input type="checkbox" checked id="mel-skull" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="medea">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Medea</span>
+                        <input type="checkbox" checked id="medea" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="persephone">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Persephone</span>
+                        <input type="checkbox" checked id="persephone" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="hel">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Hel</span>
+                        <input type="checkbox" checked id="hel" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="mel-coat">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Melinoe's Coat</span>
+                        <input type="checkbox" checked id="mel-coat" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="selene">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Selene</span>
+                        <input type="checkbox" checked id="selene" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="nyx">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Nyx</span>
+                        <input type="checkbox" checked id="nyx" class="aspect-setting">
+                    </div>
+                </label>
+                <label for="shiva">
+                    <div class="item aspect-item">
+                        <span class="aspect-span">Aspect of Shiva</span>
+                        <input type="checkbox" checked id="shiva" class="aspect-setting">
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div class="section tab-pane" id="familiars">
+            <h2>Familiar settings</h2>
+            <div class="setting-general-div">
+                <label for="disable-toula" class="setting-general-label">
+                    <span>Disable Toula if Strength is selected</span>
+                    <input type="checkbox" class="setting-general" id="disable-toula">
+                </label>
+            </div>
+            <div class="bulk-actions">
+                <button type="button" class="bulk-action" onclick="performBulkAction('enable', 'familiar')">Enable
+                    all</button>
+                <button type="button" class="bulk-action" onclick="performBulkAction('disable', 'familiar')">Disable
+                    all</button>
+            </div>
+            <div class="items familiar-items">
+                <label for="frinos">
+                    <div class="item familiar-item">
+                        <span class="familiar-span">Frinos</span>
+                        <input type="checkbox" checked id="frinos" class="familiar-setting">
+                    </div>
+                </label>
+                <label for="toula">
+                    <div class="item familiar-item">
+                        <span class="familiar-span">Toula</span>
+                        <input type="checkbox" checked id="toula" class="familiar-setting">
+                    </div>
+                </label>
+                <label for="raki">
+                    <div class="item familiar-item">
+                        <span class="familiar-span">Raki</span>
+                        <input type="checkbox" checked id="raki" class="familiar-setting">
+                    </div>
+                </label>
+                <label for="hecuba">
+                    <div class="item familiar-item">
+                        <span class="familiar-span">Hecuba</span>
+                        <input type="checkbox" checked id="hecuba" class="familiar-setting">
+                    </div>
+                </label>
+                <label for="gale">
+                    <div class="item familiar-item">
+                        <span class="familiar-span">Gale</span>
+                        <input type="checkbox" checked id="gale" class="familiar-setting">
+                    </div>
+                </label>
+            </div>
+        </div>
+        <button type="button" class="generate" onclick="generateTrial()">Generate Trial</button>
+    </div>
+    <div class="seed-selection">
+        <div class="seed-toggle">
+            <label for="use-random-seed">Random Seed</label>
+            <input type="checkbox" id="use-random-seed" checked onchange="toggleSeedInput()">
+        </div>
+        <div id="manual-seed-container" style="display: none;">
+            <label for="manual-seed">Seed:</label>
+            <input type="number" id="manual-seed" min="1" max="999999999" placeholder="1-999999999">
+        </div>
+    </div>
+    <div class="results"></div>
+    <div id="toast-container"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>
